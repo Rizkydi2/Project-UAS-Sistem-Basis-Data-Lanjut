@@ -1,0 +1,71 @@
+XQuery #1 — Jumlah Destinasi per Kategori
+
+for $cat in distinct-values(db:get('integrated')//category)
+let $count := count(db:get('integrated')//destination[category = $cat])
+order by $count descending
+return <result kategori="{$cat}" jumlah="{$count}"/>
+
+
+XQuery #2 — Destinasi dengan Liputan Media Tertinggi
+
+for $d in db:get('integrated')//destination
+where xs:integer($d/media-coverage/@count) > 0
+order by xs:integer($d/media-coverage/@count) descending
+return <result 
+  nama="{$d/name}" 
+  kategori="{$d/category}" 
+  jumlah_berita="{$d/media-coverage/@count}"/>
+
+
+XQuery #3 — Filter Destinasi Berstatus Terganggu
+
+for $d in db:get('integrated')//destination
+where $d/route-status = 'Ditutup' or $d/route-status = 'Perhatian'
+order by $d/route-status
+return <result 
+  id="{$d/@id}" 
+  nama="{$d/name}" 
+  status="{$d/route-status}" 
+  provinsi="{$d/province}"/>
+
+
+XQuery #4 — Distribusi Destinasi per Provinsi
+
+for $prov in distinct-values(db:get('integrated')//province)
+let $count := count(db:get('integrated')//destination[province = $prov])
+order by $count descending
+return <result provinsi="{$prov}" jumlah_destinasi="{$count}"/>
+
+
+XQuery #5 — Destinasi Terdekat dari Titik Referensi
+
+declare function local:dist($lat1, $lon1, $lat2, $lon2) as xs:double {
+  math:sqrt(math:pow($lat1 - $lat2, 2) + math:pow($lon1 - $lon2, 2))
+};
+
+let $ref-lat := -6.9024780
+let $ref-lon := 107.6186010
+
+for $d in db:get('integrated')//destination
+let $lat := xs:double($d/coordinates/@lat)
+let $lon := xs:double($d/coordinates/@lon)
+let $jarak := local:dist($ref-lat, $ref-lon, $lat, $lon)
+order by $jarak
+return <result nama="{$d/name}" kategori="{$d/category}" jarak="{$jarak}"/>
+
+
+XQuery #6 — Rekomendasi Destinasi Alternatif
+
+let $closed := db:get('integrated')//destination[route-status = 'Ditutup']
+
+for $c in $closed
+let $alt := db:get('integrated')//destination[
+  category = $c/category 
+  and route-status = 'Normal'
+  and province = $c/province
+][1]
+return <rekomendasi 
+  destinasi_tertutup="{$c/name}" 
+  kategori="{$c/category}" 
+  provinsi="{$c/province}"
+  pengganti="{if ($alt) then $alt/name else 'Tidak ada alternatif di provinsi sama'}"/>

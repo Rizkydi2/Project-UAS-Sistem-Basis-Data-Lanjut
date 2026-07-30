@@ -1,0 +1,169 @@
+{
+  "info": {
+    "_postman_id": "4c03acf9-efc0-47eb-8cd5-84c660ddf215",
+    "name": "Smart Tour Router API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56839414",
+    "_collection_link": "https://go.postman.co/collection/56839414-4c03acf9-efc0-47eb-8cd5-84c660ddf215?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Request 1: GET - Destinasi per Kategori",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/destinations/category/pantai",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations",
+            "category",
+            "pantai"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Request 2: GET - Destinasi per Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/destinations/status/Ditutup",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations",
+            "status",
+            "Ditutup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Request 3: POST - Update Status Rute",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/destinations/D0001/status?status=Ditutup",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations",
+            "D0001",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "Ditutup"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Request 4: POST - Tambah Destinasi Baru",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Pantai Contoh Tim\",\r\n  \"category\": \"pantai\",\r\n  \"province\": \"Bali\",\r\n  \"regency\": \"Badung\",\r\n  \"lat\": \"-8.123456\",\r\n  \"lon\": \"115.123456\",\r\n  \"address\": \"Jalan Contoh, Badung, Bali\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/destinations",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Request 5: GET - Semua Destinasi (JSON)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/destinations/json",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations",
+            "json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Request 6: GET - Destinasi dengan Media Coverage (JSON)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/destinations/media-json",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "destinations",
+            "media-json"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
