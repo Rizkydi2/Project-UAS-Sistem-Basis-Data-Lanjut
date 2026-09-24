@@ -2,7 +2,7 @@
 //   Skema terverifikasi dari screenshot kelompok:
 //   Wisata(nama_wisata, latitude, longitude, alamat, status)
 //   Kategori(nama)
-//   Provinsi(provinsi)          <-- BUKAN "nama", ini bug yang diperbaiki
+//   Provinsi(provinsi)          BUKAN "nama", ini bug yang diperbaiki
 //   KotaKabupaten(kota_kabupaten)
 //   Relasi: BERLOKASI_DI, BAGIAN_DARI, BERKATEGORI, JALUR_KE
 
