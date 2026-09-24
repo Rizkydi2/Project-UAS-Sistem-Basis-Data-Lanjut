@@ -1,4 +1,4 @@
-// ============================================================
+
 // SMART TOUR ROUTER - NEO4J AURA (FINAL, VERIFIED VERSION)
 // Skema terverifikasi dari screenshot kelompok:
 //   Wisata(nama_wisata, latitude, longitude, alamat, status)
@@ -6,7 +6,7 @@
 //   Provinsi(provinsi)          <-- BUKAN "nama", ini bug yang diperbaiki
 //   KotaKabupaten(kota_kabupaten)
 //   Relasi: BERLOKASI_DI, BAGIAN_DARI, BERKATEGORI, JALUR_KE
-// ============================================================
+
 
 STEP 1 — Cek data masih utuh (gak perlu diubah, cuma verifikasi)
 
