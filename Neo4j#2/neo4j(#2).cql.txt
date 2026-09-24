@@ -119,7 +119,7 @@ MATCH (w:Wisata) WHERE w.nama_wisata = "Pantai Kuta" SET w.status = "closed";
 MATCH (w:Wisata) WHERE w.nama_wisata = "Tanah Lot"   SET w.status = "banjir";
 MATCH (w:Wisata) RETURN w.nama_wisata, w.status LIMIT 20;
 
-// ---------- 5. HITUNG BOBOT EFEKTIF (weight) DENGAN PENALTI DINAMIS ----------
+// 5. HITUNG BOBOT EFEKTIF (weight) DENGAN PENALTI DINAMIS
 MATCH (a:Wisata)-[r:JALUR_KE]->(b:Wisata)
 SET r.weight = CASE
   WHEN a.status IN ['closed','banjir'] OR b.status IN ['closed','banjir']
@@ -127,7 +127,7 @@ SET r.weight = CASE
   ELSE r.distance
 END;
 
-// ---------- 6. ADVANCED CYPHER QUERY: Dynamic Dijkstra Shortest Path with Constraints ----------
+// 6. ADVANCED CYPHER QUERY: Dynamic Dijkstra Shortest Path with Constraints
 // Ini pengganti shortestPath() bawaan yang error (shortestPath() cuma hop-count,
 // tidak bisa baca properti weight/status)
 MATCH (start:Wisata {nama_wisata: 'Pantai Kuta'}),
