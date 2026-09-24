@@ -29,4 +29,4 @@ Project ini mengimplementasikan arsitektur **polyglot persistence** yang mengint
 `BaseX` `MongoDB Atlas` `Neo4j Aura` `XQuery/XPath` `Cypher` `Postman`
 
 ## Alur Data
-CSV & XML mentah → BaseX (validasi & integrasi XML) → MongoDB Atlas (dokumen + sharding) → Neo4j Aura (graph + shortest path dinamis)
+CSV & XML mentah → BaseX (validasi & integrasi XML) → MongoDB Atlas (dokumen + sharding) → Neo4j Aura (graph + shortest path dinamis) → Laporan
