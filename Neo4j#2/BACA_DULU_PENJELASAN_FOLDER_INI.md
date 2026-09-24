@@ -1,6 +1,6 @@
 # Penjelasan Folder Ini
 
-**Topik resmi Kelompok 1: Topik #1 — Smart Tour Router**
+*Topik resmi Kelompok 1: Topik #1 — Smart Tour Router*
 (Sistem Optimalisasi Rute & Manajemen Logistik Perjalanan)
 
 Seluruh isi laporan utama, pipeline BaseX/MongoDB/Neo4j, dan Advanced Cypher
