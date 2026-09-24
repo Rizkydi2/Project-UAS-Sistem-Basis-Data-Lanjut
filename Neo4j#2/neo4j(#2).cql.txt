@@ -91,12 +91,12 @@ Kalau step 6 masih error, screenshot errornya dan kirim ke saya — kemungkinan 
 
 cypher
 MATCH (w:Wisata) WHERE w.nama_wisata CONTAINS 'Kuta' RETURN w.nama_wisata;
-// ---------- 0. VERIFIKASI SKEMA ----------
+//  0. VERIFIKASI SKEMA
 CALL db.labels();
 MATCH (n) RETURN labels(n)[0] AS label, count(*) AS jumlah ORDER BY jumlah DESC;
 
 
-// ---------- 1. FIX BUG: label KotaKabupaten ada koma (kalau muncul lagi) ----------
+// 1. FIX BUG: label KotaKabupaten ada koma (kalau muncul lagi)
 MATCH (n:`KotaKabupaten,`)
 REMOVE n:`KotaKabupaten,`
 SET n:KotaKabupaten;
