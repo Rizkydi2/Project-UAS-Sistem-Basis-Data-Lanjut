@@ -101,20 +101,20 @@ MATCH (n:`KotaKabupaten,`)
 REMOVE n:`KotaKabupaten,`
 SET n:KotaKabupaten;
 
-// ---------- 2. FIX BUG: query Provinsi salah pakai p.nama -> harus p.provinsi ----------
+//  2. FIX BUG: query Provinsi salah pakai p.nama -> harus p.provinsi 
 MATCH (w:Wisata)-[:BERLOKASI_DI]->(kk:KotaKabupaten)-[:BAGIAN_DARI]->(p:Provinsi)
 WHERE p.provinsi = 'Bali'
 RETURN w.nama_wisata, kk.kota_kabupaten AS kota, w.alamat
 LIMIT 20;
 
-// ---------- 3. ISI BOBOT DASAR (distance) JIKA BELUM ADA ----------
+// 3. ISI BOBOT DASAR (distance) JIKA BELUM ADA 
 MATCH ()-[r:JALUR_KE]->() RETURN properties(r) LIMIT 5;
 
 MATCH ()-[r:JALUR_KE]->()
 WHERE r.distance IS NULL
 SET r.distance = round(rand()*40+1);   // simulasi; idealnya haversine dari lat/long
 
-// ---------- 4. SIMULASI STATUS REAL-TIME DARI XML (BaseX) ----------
+// 4. SIMULASI STATUS REAL-TIME DARI XML (BaseX)
 MATCH (w:Wisata) WHERE w.nama_wisata = "Pantai Kuta" SET w.status = "closed";
 MATCH (w:Wisata) WHERE w.nama_wisata = "Tanah Lot"   SET w.status = "banjir";
 MATCH (w:Wisata) RETURN w.nama_wisata, w.status LIMIT 20;
